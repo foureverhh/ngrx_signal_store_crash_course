@@ -5,6 +5,7 @@ import { MatIcon } from '@angular/material/icon';
 import { TodosStore } from '../store/todos.store';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle'
 import { MatListOption,MatSelectionList} from '@angular/material/list'
+import { MatSuffix } from '@angular/material/form-field';
 
 @Component({
   selector: 'todos-list',
@@ -16,11 +17,17 @@ import { MatListOption,MatSelectionList} from '@angular/material/list'
     MatButtonToggle,
     MatButtonToggleGroup,
     MatSelectionList,
-    MatListOption
+    MatListOption,
+    MatSuffix
   ],
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss'
 })
 export class TodosListComponent {
   store = inject(TodosStore);
+
+
+  async onAddTodo(inputValue: string) {
+    await this.store.addTodoPartial(inputValue);
+  }
 }
