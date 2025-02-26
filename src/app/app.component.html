@@ -19,6 +19,12 @@
       }
     </ol>
   -->
-    <h2>todos-list</h2>
-    <todos-list/>
+    @if (this.store.loading()) {
+      <mat-progress-spinner mode="indeterminate"/>
+    } 
+    @else {
+      <h2>todos-list</h2>
+      <todos-list/>
+    }
+
 </div>
