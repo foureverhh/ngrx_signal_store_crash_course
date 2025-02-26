@@ -3,5 +3,22 @@
       <img src="angular_logo.png" alt="Angular Logo">
       <h1>Angular ngrx signal store crash course</h1>
     </div>
+    <!--
     {{this.store.loading()}}
+    {{this.store.todos() | json}}
+    <p>for (todo of todos; track todo.id) unordered list</p>
+    <ul>
+      @for (todo of todos; track todo.id) {
+        <li>id {{todo.id}} with title {{todo.title}} completion status is {{todo.completed}}</li>
+      }
+    </ul>
+    <p>for(todo of this.store.todos(); track todo.id) ordered list</p>
+    <ol>
+      @for(todo of this.store.todos(); track todo.id) {
+        <li>id {{todo.id}} with title {{todo.title}} completion status is {{todo.completed}}</li>
+      }
+    </ol>
+  -->
+    <h2>todos-list</h2>
+    <todos-list/>
 </div>
