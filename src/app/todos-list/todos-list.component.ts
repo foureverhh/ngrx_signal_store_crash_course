@@ -1,4 +1,4 @@
-import { Component, inject, mergeApplicationConfig } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatFormField, MatLabel} from '@angular/material/form-field';
 import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
@@ -6,6 +6,7 @@ import { TodosStore } from '../store/todos.store';
 import { MatButtonToggle, MatButtonToggleGroup } from '@angular/material/button-toggle'
 import { MatListOption,MatSelectionList} from '@angular/material/list'
 import { MatSuffix } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common'
 
 @Component({
   selector: 'todos-list',
@@ -18,7 +19,8 @@ import { MatSuffix } from '@angular/material/form-field';
     MatButtonToggleGroup,
     MatSelectionList,
     MatListOption,
-    MatSuffix
+    MatSuffix,
+    CommonModule
   ],
   templateUrl: './todos-list.component.html',
   styleUrl: './todos-list.component.scss'
@@ -34,5 +36,10 @@ export class TodosListComponent {
   async onDeleteTodo(id: string, event: MouseEvent) {
     event.stopPropagation();
     await this.store.deleteTodo(id);
+  }
+
+  async onTodoToggled(id: string, completed: boolean) {
+    console.log(completed) //? why $event has value of completed?
+    await this.store.updateTodo(id, completed);
   }
 }

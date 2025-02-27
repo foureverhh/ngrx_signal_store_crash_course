@@ -3,6 +3,7 @@ import { Todo } from "../model/todo.model";
 import { patchState, signalStore, withMethods, withState } from "@ngrx/signals"
 import { TodosService } from '../services/todos.service';
 import { inject } from "@angular/core";
+import { TODOS } from '../model/mock-data';
 
 export type TodosFilter = "all" | "pending" | "completed";
 
@@ -48,6 +49,13 @@ export const TodosStore = signalStore(
                 //const todos = await todosService.deleteTodo(id);
                 patchState(store, (state) => ({
                     todos: [...state.todos.filter(todo => todo.id !== id)]
+                }))
+            },
+
+            async updateTodo(id:string, completed: boolean) {
+                await todosService.updateTodo(id, completed);
+                patchState(store, state => ({
+                    todos: state.todos.map(todo => todo.id === id ? { ...todo, completed } : todo)
                 }))
             }
         })
