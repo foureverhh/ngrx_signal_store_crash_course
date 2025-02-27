@@ -30,4 +30,9 @@ export class TodosListComponent {
   async onAddTodo(inputValue: string) {
     await this.store.addTodoPartial(inputValue);
   }
+
+  async onDeleteTodo(id: string, event: MouseEvent) {
+    event.stopPropagation();
+    await this.store.deleteTodo(id);
+  }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { TODOS } from "../model/mock-data";
-import { Todo } from "../model/todo.model";
+import { Todo } from '../model/todo.model';
 
 @Injectable({
     providedIn:'root'
@@ -23,6 +23,11 @@ export class TodosService {
             id: Math.random().toString(36).substr(2,9),
             ...todo
         } as Todo
+    }
+
+    async deleteTodo(id:string): Promise<Todo[]> {
+        await sleep(1000);
+        return TODOS.filter(todo => todo.id !== id);
     }
 
 }
